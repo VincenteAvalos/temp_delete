@@ -20,10 +20,14 @@ def find_temp():  # Finds the users temp folder.
             print('-----------\n[ErrorNotFound: '+ path + ']\n==')
     rm_files()
     
-def rm_files():
+def rm_files():  # Removes files in Temp/ directory
     files = os.listdir()
     for file in files:
-        print(file+"\nWILL BE REMOVED\n----------")
+        try:
+            os.remove(file)
+        except PermissionError:
+            print(file+ " [PermissionError]")
+
 
     # print(paths)
 
