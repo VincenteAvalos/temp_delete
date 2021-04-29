@@ -4,7 +4,7 @@ username = ""
 paths = []
 
 
-def find_temp():  # Finds the users temp folder. 
+def find_temp():  # Finds the users temp folder
     os.chdir("C:\\Users\\")
     print(os.listdir())
     start = os.listdir(".")
