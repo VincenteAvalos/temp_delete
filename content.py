@@ -1,7 +1,10 @@
-import os
+import os, shutil
 
 username = ""
 paths = []
+deleted = []
+remaining = []
+folders = []
 
 
 def find_temp():  # Finds the users temp folder. 
@@ -17,13 +20,27 @@ def find_temp():  # Finds the users temp folder.
             print('-----------\n[ErrorNoPerms: '+ path + ']\n==')
         except FileNotFoundError:
             paths.remove(path)
-            print('-----------\n[ErrorNotFound: '+ path + ']\n==')
+            print('-----------\n[ErrorNotFound: '+ path + ']\n')
     rm_files()
     
 def rm_files():
     files = os.listdir()
     for file in files:
-        print(file+"\nWILL BE REMOVED\n----------")
+        try:
+            if '.tmp' or '.txt' in file:
+                os.remove(file)
+                print(file)
+            else:
+                shutil.rmtree(file)
+            deleted.append(file)
+        except PermissionError:
+            remaining.append(file)
+    print(f"{', '.join(remaining)}\n^^^ Could not be deleted...")
+    if len(deleted) == 0:
+        print("\n>> Nothing was removed...\n")
+    else:
+        print(f"{deleted}\n * DELETED *\n---")
+
 
     # print(paths)
 
