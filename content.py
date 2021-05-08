@@ -7,7 +7,7 @@ remaining = []
 folders = []
 
 
-def find_temp():  # Finds the users temp folder. 
+def find_temp():  # Finds the users temp folder
     os.chdir("C:\\Users\\")
     print(os.listdir())
     start = os.listdir(".")
@@ -23,9 +23,10 @@ def find_temp():  # Finds the users temp folder.
             print('-----------\n[ErrorNotFound: '+ path + ']\n')
     rm_files()
     
-def rm_files():
+def rm_files():  # Removes files in Temp/ directory
     files = os.listdir()
     for file in files:
+<<<<<<< HEAD
         try:
             if '.tmp' or '.txt' in file:
                 os.remove(file)
@@ -41,6 +42,15 @@ def rm_files():
     else:
         print(f"{deleted}\n * DELETED *\n---")
 
+||||||| b0121ff
+        print(file+"\nWILL BE REMOVED\n----------")
+=======
+        try:
+            os.remove(file)
+        except PermissionError:
+            print(file+ " [PermissionError]")
+
+>>>>>>> e5343aff5bb2781534ddc62a81d9c2d79c03f418
 
     # print(paths)
 
